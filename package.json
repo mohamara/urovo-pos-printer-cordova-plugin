@@ -1,9 +1,9 @@
 {
-  "name": "cordova-plugin-urovo-posprinter",
+  "name": "org.cordova.plugin.urovo.posprinter",
   "version": "0.0.1",
   "description": "cordova plugin for urovo i9100 POS device printer",
   "cordova": {
-    "id": "cordova-plugin-urovo-posprinter",
+    "id": "org.cordova.plugin.urovo.posprinter",
     "platforms": [
       "android"
     ]

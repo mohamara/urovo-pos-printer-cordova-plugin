@@ -1,2 +1,16 @@
-<?xml version='1.0' encoding='utf-8'?>
-<plugin id="cordova-plugin-urovo-posprinter" version="0.0.1" xmlns="http://apache.org/cordova/ns/plugins/1.0" xmlns:android="http://schemas.android.com/apk/res/android"><name>cordovaUrovoPOSPrinter</name><js-module name="cordovaUrovoPOSPrinter" src="www/cordovaUrovoPOSPrinter.js"><clobbers target="cordova.plugins.cordovaUrovoPOSPrinter" /></js-module><platform name="android"><config-file parent="/*" target="res/xml/config.xml"><feature name="cordovaUrovoPOSPrinter"><param name="android-package" value="cordova-plugin-urovo-posprinter.cordovaUrovoPOSPrinter" /></feature></config-file><config-file parent="/*" target="AndroidManifest.xml"></config-file><source-file src="src/android/cordovaUrovoPOSPrinter.java" target-dir="src/cordova-plugin-urovo-posprinter/cordovaUrovoPOSPrinter" /></platform></plugin>
+<?xml version="1.0" encoding="UTF-8"?>
+<plugin xmlns="http://apache.org/cordova/ns/plugins/1.0" xmlns:android="http://schemas.android.com/apk/res/android" id="org.cordova.plugin.urovo.posprinter" version="0.0.1">
+   <name>cordovaUrovoPOSPrinter</name>
+   <js-module name="cordovaUrovoPOSPrinter" src="www/cordovaUrovoPOSPrinter.js">
+      <clobbers target="cordova.plugins.cordovaUrovoPOSPrinter" />
+   </js-module>
+   <platform name="android">
+      <config-file parent="/*" target="res/xml/config.xml">
+         <feature name="cordovaUrovoPOSPrinter">
+            <param name="android-package" value="org.cordova.plugin.urovo.posprinter.cordovaUrovoPOSPrinter" />
+         </feature>
+      </config-file>
+      <config-file parent="/*" target="AndroidManifest.xml" />
+      <source-file src="src/android/cordovaUrovoPOSPrinter.java" target-dir="src/org.cordova.plugin.urovo.posprinter/cordovaUrovoPOSPrinter" />
+   </platform>
+</plugin>
