@@ -1,0 +1,25 @@
+{
+  "name": "cordova-plugin-urovo-posprinter",
+  "version": "0.0.1",
+  "description": "cordova plugin for urovo i9100 POS device printer",
+  "cordova": {
+    "id": "cordova-plugin-urovo-posprinter",
+    "platforms": [
+      "android"
+    ]
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mohamara/urovo-pos-printer-cordova-plugin.git"
+  },
+  "keywords": [
+    "ecosystem:cordova",
+    "cordova-android"
+  ],
+  "author": "mohamara",
+  "license": "apache 2",
+  "bugs": {
+    "url": "https://github.com/mohamara/urovo-pos-printer-cordova-plugin/issues"
+  },
+  "homepage": "https://github.com/mohamara/urovo-pos-printer-cordova-plugin#readme"
+}
