@@ -14,7 +14,7 @@ import org.json.JSONObject;
 import java.util.HashMap;
 import java.util.Map;
 
-public class cordovaUrovoPOSPrinter extends CordovaPlugin {
+public class POSPrinter extends CordovaPlugin {
 	@Override 
 	public void initialize(CordovaInterface cordova, CordovaWebView webView) {
 		super.initialize(cordova, webView);

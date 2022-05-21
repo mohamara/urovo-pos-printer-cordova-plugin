@@ -1,5 +1,11 @@
-var exec = require('cordova/exec');
+var exec = require('cordova/exec')
 
-exports.coolMethod = function (arg0, success, error) {
-    exec(success, error, 'cordovaUrovoPOSPrinter', 'coolMethod', [arg0]);
-};
+export class PosPrinter {
+    print(arg0, success, error) {
+        alert('hi')
+        // exec(success, error, 'POSPrinter', 'coolMethod', [arg0])
+    };
+}
+
+var posPrinter = new PosPrinter()
+module.exports = posPrinter
