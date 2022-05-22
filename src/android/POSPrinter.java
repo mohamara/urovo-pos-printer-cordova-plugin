@@ -15,7 +15,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class POSPrinter extends CordovaPlugin {
-	@Override 
+	@Override
 	public void initialize(CordovaInterface cordova, CordovaWebView webView) {
 		super.initialize(cordova, webView);
 		// Plugin specific one off initialization code here, this one doesn't
@@ -24,7 +24,7 @@ public class POSPrinter extends CordovaPlugin {
 
 	@Override
 	public boolean execute(String action, JSONArray args, CallbackContext callbackContext) throws JSONException {
-		// Which method was called? With many methods in a 
+		// Which method was called? With many methods in a
 		// plugin we could do this another way e.g. reflection
 		if ("doSomethingNoArgs".equals(action)) {
 			doSomethingNoArgs(callbackContext);
@@ -57,7 +57,7 @@ public class POSPrinter extends CordovaPlugin {
 	}
 
 	private void doSomethingOneArg(String arg, CallbackContext callbackContext) {
-		// TODO		
+		// TODO
 		boolean success = false;
 
 		// Call some native API and set success to true|false
@@ -73,33 +73,34 @@ public class POSPrinter extends CordovaPlugin {
 
 	}
 
-	private void doSomethingMultipleArgs(String argStr, boolean argBool, JSONArray argArray, CallbackContext callbackContext) {
+	private void doSomethingMultipleArgs(String argStr, boolean argBool, JSONArray argArray,
+			CallbackContext callbackContext) {
 		boolean success = false;
 
 		// Check argArray
 		if (argArray == null || argArray.length() == 0) {
 			callbackContext.error("doSomethingMultipleArgs requires a populated argArray!");
-		} else {		
+		} else {
 			// Call some native API and set success to true|false
 			String[] stringArray = new String[argArray.length()];
 
 			for (int n = 0; n < argArray.length(); n++) {
 				try {
 					stringArray[n] = argArray.getString(n);
-				} catch(JSONException jsone) {
+				} catch (JSONException jsone) {
 					callbackContext.error("doSomethingMultipleArgs found a non-String value in argArray!");
 					return;
 				}
 			}
 
-			Map <String, String> result = callSomeApi(argStr, argBool, stringArray);
-			success = (result != null && ! result.isEmpty());
+			Map<String, String> result = callSomeApi(argStr, argBool, stringArray);
+			success = (result != null && !result.isEmpty());
 			// End call some native API
 
 			if (success) {
 				// Pack result up into a JSON Object
 				JSONObject resObj = new JSONObject();
-				for (Map.Entry<String, String> entry: result.entrySet()) {
+				for (Map.Entry<String, String> entry : result.entrySet()) {
 					try {
 						resObj.put(entry.getKey(), entry.getValue());
 					} catch (JSONException jsone) {
@@ -116,7 +117,7 @@ public class POSPrinter extends CordovaPlugin {
 	}
 
 	// ***** The rest of this class represent dummy API methods *****
-	// ***** and are not as such part of the Cordova plugin     *****
+	// ***** and are not as such part of the Cordova plugin *****
 
 	// Dummy API call returns an int
 	private int callSomeApi() {
@@ -128,7 +129,7 @@ public class POSPrinter extends CordovaPlugin {
 		String result = null;
 
 		if (param != null && param.length() > 0) {
-			result = new StringBuilder(param).reverse().toString();			
+			result = new StringBuilder(param).reverse().toString();
 		}
 
 		return result;
@@ -146,14 +147,14 @@ public class POSPrinter extends CordovaPlugin {
 		return m;
 	}
 
-	    public void print(String type, String data) {
-        Intent intentPrinter = new Intent(this.cordova.getActivity().getBaseContext(), PrinterManagerActivity.class);
-        // intentPrinter.setAction(Intents.Encode.ACTION);
-        intentPrinter.putExtra(Intents.Encode.TYPE, type);
-        intentPrinter.putExtra(Intents.Encode.DATA, data);
-        // avoid calling other phonegap apps
-        intentPrinter.setPackage(this.cordova.getActivity().getApplicationContext().getPackageName());
+	public void print(String type, String data) {
+		Intent intentPrinter = new Intent(this.cordova.getActivity().getBaseContext(), PrinterManagerActivity.class);
+		intentPrinter.setAction(Intents.Print.ACTION);
+		intentPrinter.putExtra(Intents.Print.TYPE, type);
+		intentPrinter.putExtra(Intents.Print.DATA, data);
+		// avoid calling other phonegap apps
+		intentPrinter.setPackage(this.cordova.getActivity().getApplicationContext().getPackageName());
 
-        this.cordova.getActivity().startActivityForResult(intentPrinter);
-    }
+		this.cordova.getActivity().startActivityForResult(intentPrinter);
+	}
 }
