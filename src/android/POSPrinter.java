@@ -147,11 +147,11 @@ public class POSPrinter extends CordovaPlugin {
 		return m;
 	}
 
-	public void print(String type, String data) {
-		Intent intentPrinter = new Intent(this.cordova.getActivity().getBaseContext(), PrinterManagerActivity.class);
-		intentPrinter.setAction(Intents.Print.ACTION);
-		intentPrinter.putExtra(Intents.Print.TYPE, type);
-		intentPrinter.putExtra(Intents.Print.DATA, data);
+	public void print(String action, String message) {
+		Intent intentPrinter = new Intent("co.yft.posprinter", printerActivity.class);
+		// intentPrinter.setAction(Intents.Print.ACTION);
+		intentPrinter.putExtra("action", action);
+		intentPrinter.putExtra("message", message);
 		// avoid calling other phonegap apps
 		intentPrinter.setPackage(this.cordova.getActivity().getApplicationContext().getPackageName());
 
