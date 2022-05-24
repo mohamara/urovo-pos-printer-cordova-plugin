@@ -3,10 +3,16 @@ var exec = require('cordova/exec')
 function PosPrinter() {
 
 }
-PosPrinter.prototype.print = function (type, data, success, error) {
-    exec(success, error, 'POSPrinter', 'print', [
-        { "type": type, "data": data }
-    ])
+PosPrinter.prototype.print = function (success, error, action, message) {
+    exec(
+        function (result) {
+            success(result)
+        },
+
+        function (err) {
+            error(err)
+        },
+        'POSPrinter', 'print', [action, message])
 }
 
 var posPrinter = new PosPrinter()

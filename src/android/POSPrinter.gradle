@@ -6,7 +6,7 @@ repositories{
 }
 
 dependencies {
-    compile(name:'PrinterManager-debug', ext:'aar')
+    compile(name:'app-debug', ext:'aar')
 }
 
 android {
