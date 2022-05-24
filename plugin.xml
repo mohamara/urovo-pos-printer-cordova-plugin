@@ -5,12 +5,21 @@
       <clobbers target="cordova.plugins.POSPrinter" />
    </js-module>
    <platform name="android">
-      <config-file parent="/*" target="res/xml/config.xml">
+      <source-file src="src/android/POSPrinter.java" target-dir="src/org.cordova.plugin.urovo.posprinter/POSPrinter" />
+      <config-file target="res/xml/config.xml" parent="/*" >
          <feature name="POSPrinter">
             <param name="android-package" value="org.cordova.plugin.urovo.posprinter.POSPrinter" />
          </feature>
       </config-file>
+      <config-file target="AndroidManifest.xml" parent="/manifest/application">
+         <activity android:name="co.yft.posprinter.PrinterActivity" android:clearTaskOnLaunch="true" android:label="Printer"/>
+      </config-file>
       <config-file parent="/*" target="AndroidManifest.xml" />
-      <source-file src="src/android/POSPrinter.java" target-dir="src/org.cordova.plugin.urovo.posprinter/POSPrinter" />
+      <framework src="src/android/POSPrinter.gradle" custom="true" type="gradleReference"/>
+    <framework src="com.android.support:support-v4:$ANDROID_SUPPORT_V4_VERSION"/>
+    <lib-file src="src/android/app-debug.aar"/>
+    <preference name="ANDROID_SUPPORT_V4_VERSION" default="27.+"/>
    </platform>
 </plugin>
+
+ 
