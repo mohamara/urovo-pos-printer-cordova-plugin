@@ -10,6 +10,9 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import android.content.Intent;
+import android.util.Log;
+
 // Needed only for fake API calls
 import java.util.HashMap;
 import java.util.Map;
@@ -26,6 +29,10 @@ public class POSPrinter extends CordovaPlugin {
 	public boolean execute(String action, JSONArray args, CallbackContext callbackContext) throws JSONException {
 		// Which method was called? With many methods in a
 		// plugin we could do this another way e.g. reflection
+		if ("print".equals(action)) {
+			print(args.getString(0), args.getString(1));
+			return true;
+		}
 		if ("doSomethingNoArgs".equals(action)) {
 			doSomethingNoArgs(callbackContext);
 			return true;
@@ -148,7 +155,7 @@ public class POSPrinter extends CordovaPlugin {
 	}
 
 	public void print(String action, String message) {
-		Intent intentPrinter = new Intent("co.yft.posprinter", printerActivity.class);
+		Intent intentPrinter = new Intent("co.yft.posprinter", PrinterActivity.class);
 		// intentPrinter.setAction(Intents.Print.ACTION);
 		intentPrinter.putExtra("action", action);
 		intentPrinter.putExtra("message", message);

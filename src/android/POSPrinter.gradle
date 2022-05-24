@@ -6,7 +6,7 @@ repositories{
 }
 
 dependencies {
-    compile(name:'app-debug', ext:'aar')
+       implementation files('libs/platform_sdk_v4.1.0326.jar')
 }
 
 android {
