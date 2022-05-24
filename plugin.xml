@@ -1,11 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <plugin xmlns="http://apache.org/cordova/ns/plugins/1.0" xmlns:android="http://schemas.android.com/apk/res/android" id="org.cordova.plugin.urovo.posprinter" version="0.0.1">
    <name>POSPrinter</name>
+     <license>MIT</license>
+  <repo>https://github.com/mohamara/urovo-pos-printer-cordova-plugin</repo>
+  <issue>https://github.com/mohamara/urovo-pos-printer-cordova-plugin/issues</issue>
+  <engines>
+    <engine name="cordova" version=">=7.1.0"/>
+    <engine name="cordova-android" version=">=6.3.0"/>
+  </engines>
    <js-module name="POSPrinter" src="www/POSPrinter.js">
       <clobbers target="cordova.plugins.POSPrinter" />
    </js-module>
    <platform name="android">
-      <source-file src="src/android/POSPrinter.java" target-dir="src/org.cordova.plugin.urovo.posprinter/POSPrinter" />
+      <source-file src="src/android/org/cordova/plugins/posPrinter/POSPrinter.java" target-dir="src/org/cordova/plugins/urovo/posprinter" />
       <config-file target="res/xml/config.xml" parent="/*" >
          <feature name="POSPrinter">
             <param name="android-package" value="org.cordova.plugin.urovo.posprinter.POSPrinter" />
