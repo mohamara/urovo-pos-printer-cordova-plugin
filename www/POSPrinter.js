@@ -4,7 +4,7 @@ cordova.define("org.cordova.plugin.urovo.posprinter.POSPrinter", function (requi
     function PosPrinter() {
 
     }
-    PosPrinter.prototype.printer = function (success, error, action, message) {
+    PosPrinter.prototype.printer = function (success, error, mainAction, action, message) {
         exec(
             function (result) {
                 success(result)
@@ -13,11 +13,19 @@ cordova.define("org.cordova.plugin.urovo.posprinter.POSPrinter", function (requi
             function (err) {
                 error(err)
             },
-            'POSPrinter', 'execute', [action, message])
+            'POSPrinter', mainAction, [action, message])
     }
 
-    PosPrinter.prototype.printerMini = function (action, message) {
-        exec('POSPrinter', 'execute', [action, message])
+    PosPrinter.prototype.printerMini = function (mainAction, action, message) {
+        exec(
+            function (result) {
+                alert(result)
+            },
+
+            function (err) {
+                alert(err)
+            },
+            'POSPrinter', mainAction, [action, message])
     }
 
 
@@ -25,3 +33,4 @@ cordova.define("org.cordova.plugin.urovo.posprinter.POSPrinter", function (requi
     module.exports = posPrinter
 
 })
+
