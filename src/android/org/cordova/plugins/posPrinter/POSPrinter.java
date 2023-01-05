@@ -12,6 +12,7 @@ import org.json.JSONObject;
 
 import android.content.Intent;
 import android.util.Log;
+import co.yft.posprinter.PrinterActivity;
 
 // Needed only for fake API calls
 import java.util.HashMap;
@@ -31,6 +32,22 @@ public class POSPrinter extends CordovaPlugin {
 		// plugin we could do this another way e.g. reflection
 		if ("print".equals(action)) {
 			print(args.getString(0), args.getString(1));
+			return true;
+		}
+		if ("feed".equals(action)) {
+			paperFeedForward();
+			return true;
+		}
+		if ("printText".equals(action)) {
+			printText(args.getString(0));
+			return true;
+		}
+		if ("printBitmap".equals(action)) {
+			printBitmap(args.getString(0));
+			return true;
+		}
+		if ("printQr".equals(action)) {
+			printQr(args.getString(0));
 			return true;
 		}
 		if ("doSomethingNoArgs".equals(action)) {
@@ -155,13 +172,62 @@ public class POSPrinter extends CordovaPlugin {
 	}
 
 	public void print(String action, String message) {
-		Intent intentPrinter = new Intent("co.yft.posprinter", PrinterActivity.class);
+
+		Intent intentPrinter = new Intent(this.cordova.getActivity().getBaseContext(), PrinterActivity.class);
 		// intentPrinter.setAction(Intents.Print.ACTION);
 		intentPrinter.putExtra("action", action);
 		intentPrinter.putExtra("message", message);
 		// avoid calling other phonegap apps
 		intentPrinter.setPackage(this.cordova.getActivity().getApplicationContext().getPackageName());
 
-		this.cordova.getActivity().startActivityForResult(intentPrinter);
+		this.cordova.getActivity().startActivity(intentPrinter);
+	}
+
+	public void printText(String message) {
+
+		Intent intentPrinter = new Intent(this.cordova.getActivity().getBaseContext(), PrinterActivity.class);
+		// intentPrinter.setAction(Intents.Print.ACTION);
+		intentPrinter.putExtra("action", "0");
+		intentPrinter.putExtra("message", message);
+		// avoid calling other phonegap apps
+		intentPrinter.setPackage(this.cordova.getActivity().getApplicationContext().getPackageName());
+
+		this.cordova.getActivity().startActivity(intentPrinter);
+	}
+
+	public void printBitmap(String message) {
+
+		Intent intentPrinter = new Intent(this.cordova.getActivity().getBaseContext(), PrinterActivity.class);
+		// intentPrinter.setAction(Intents.Print.ACTION);
+		intentPrinter.putExtra("action", "1");
+		intentPrinter.putExtra("message", message);
+		// avoid calling other phonegap apps
+		intentPrinter.setPackage(this.cordova.getActivity().getApplicationContext().getPackageName());
+
+		this.cordova.getActivity().startActivity(intentPrinter);
+	}
+
+	public void printQr(String message) {
+
+		Intent intentPrinter = new Intent(this.cordova.getActivity().getBaseContext(), PrinterActivity.class);
+		// intentPrinter.setAction(Intents.Print.ACTION);
+		intentPrinter.putExtra("action", "2");
+		intentPrinter.putExtra("message", message);
+		// avoid calling other phonegap apps
+		intentPrinter.setPackage(this.cordova.getActivity().getApplicationContext().getPackageName());
+
+		this.cordova.getActivity().startActivity(intentPrinter);
+	}
+
+	public void paperFeedForward() {
+
+		Intent intentPrinter = new Intent(this.cordova.getActivity().getBaseContext(), PrinterActivity.class);
+		// intentPrinter.setAction(Intents.Print.ACTION);
+		intentPrinter.putExtra("action", "3");
+		intentPrinter.putExtra("message", "");
+		// avoid calling other phonegap apps
+		intentPrinter.setPackage(this.cordova.getActivity().getApplicationContext().getPackageName());
+
+		this.cordova.getActivity().startActivity(intentPrinter);
 	}
 }
